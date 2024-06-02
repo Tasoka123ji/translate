@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English to Armenian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .word-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .word-item {
+            margin-bottom: 10px;
+        }
+        .word-item button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>English to Armenian Words</h1>
+    <ul class="word-list">
+        {% for number, english, armenian in words %}
+        <li class="word-item">{{ number }}. {{ english }} - {{ armenian }} <button onclick="speak('{{ english }}')">🔊</button></li>
+        {% endfor %}
+    </ul>
+    <script>
+        function speak(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.rate = 0.75;  // Set speech rate to 75% of the normal speed
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
+
